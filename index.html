@@ -40,13 +40,24 @@ There are three ways to query data with DBAddin:
 3.  Setting the Query of a ListObject (new since Excel 2007) or a PivotTable to a defined query using `DBSetQuery`:  
     This requires an existing object (e.g. a ListObject created from a DB query/connection or a pivot table) and sets the target's queryobject to the desired one.
 
-All these functions insert the queried data outside their calling cell context, which means that the target ranges can be put anywhere in the workbook (even outside of the workbook).
-
 ???
 
 Notes ..
 
 ---
+
+# DB functions/2
+
+All DB functions insert the queried data outside their calling cell context, which means that the target ranges can be put anywhere in the workbook (even outside of the workbook).
+
+Additionally, some helper functions are available:
+
+*   `chainCells`, which concatenates the values in the given range together by using "," as separator, thus making the creation of the select field clause easier.
+*   `concatCells`/`concatCellsText` simply concatenating cells (making the "&" operator obsolete) with Value property / Text property of the cells
+*   `concatCellsSep`/`concatCellsSepText` concatenating cells with given separator with Value property / Text property of the cells
+*   `DBString`, building a quoted string from an open ended parameter list given in the argument. This can also be used to easily build wildcards into the String.
+*   `DBinClause`, building an SQL "in" clause from an open ended parameter list given in the argument.
+*   `DBDate`, building a quoted Date string (standard format YYYYMMDD, but other formats can be chosen) from the date value given in the argument.
 
 #  DB Modifications
 
@@ -77,13 +88,18 @@ Notes ..
 
 # DBSheet in Action
 
-![image](https://raw.githubusercontent.com/rkapl123/DBAddin/master/docs/image/DBSheetInAction.PNG)
+![:scale 75px](https://raw.githubusercontent.com/rkapl123/DBAddin/master/docs/image/DBSheetInAction.PNG)
 
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js" type="text/javascript">
     </script>
     <script type="text/javascript">
+      remark.macros.scale = function (percentage) {
+        var url = this;
+        return '<img src="' + url + '" style="width: ' + percentage + '" />';
+      };
+
       var slideshow = remark.create();
     </script>
   </body>
