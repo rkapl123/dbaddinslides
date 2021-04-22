@@ -12,34 +12,73 @@ class: center, middle
 
 # DB Addin
 
+---
+
+# What is it all about
+
+DBAddin is a ExcelDNA based Add-in for Database interoperability.
+
+DBaddin provides  
+1. DB Functions, which are an alternative to the Excel built-in MSQuery and PowerQuery (integrated statically into worksheets having severe limitations in terms of querying and constructing parameterized queries).  
+2. Methods for working with database data (DB Modifications: DBMapper, DBAction and DBSequences). 
+3. DBMappers also include a row entry oriented way to modify data being so called DBSheets.
+
 ???
 
-Notes for the _first_ slide!
+Notes ..
 
 ---
 
-# slide 2
+# DB functions
 
-1. Introduction
-2. 
-3. 
-4. 
+There are three ways to query data with DBAddin:
 
----
+1.  A list-oriented way using `DBListFetch`:  
+    Here the values are entered into a rectangular list starting from the TargetRange cell (similar to MS-Query, actually the `QueryTables` Object is used to fill the data into the Worksheet).
+2.  A record-oriented way using `DBRowFetch`:  
+    Here the values are entered into several ranges given in the Parameter list `TargetArray`. Each of these ranges is filled in order of appearance with the results of the query.
+3.  Setting the Query of a ListObject (new since Excel 2007) or a PivotTable to a defined query using `DBSetQuery`:  
+    This requires an existing object (e.g. a ListObject created from a DB query/connection or a pivot table) and sets the target's queryobject to the desired one.
 
-# Introduction
+All these functions insert the queried data outside their calling cell context, which means that the target ranges can be put anywhere in the workbook (even outside of the workbook).
 
----
+???
 
-#  next slide
-
----
-
-# next after next
+Notes ..
 
 ---
 
-# last slide
+#  DB Modifications
+
+DBModifications can be used to
+* save Excel Range data to database table(s): DBMapper
+* modify DB Data using Data Manipulation SQL (update, delete, etc.): DBAction
+* and creating sequences of these activites: DBSequence.
+
+The target data referred to by DBMapper and DBAction (data is the DML SQL statement(s)) is specified by special Range names, any other definitions (environment, target database, etc.) is stored in a custom property of the workbook having the same name as the target range.
+
+???
+
+Notes ..
+
+---
+
+# DBSheets
+
+DBSheets are an extension to DBMappers with CUD (Create/Update/Delete) flags to modify Database data directly in an Excel sheet, i.e. to insert, update and delete rows for a defined set of fields of a given table.
+The modifications are done in DBMappers, which are filled by using a specified query. The DBMapper contains indirect lookup values for updating foreign key columns as well as resolution formulas to achieve the "normal" Table data (direct values).
+The allowed IDs and the visible lookup values for those foreign key columns are stored in a hidden lookup sheet.
+
+???
+
+Notes ..
+
+---
+
+# DBSheet in Action
+
+![image](https://raw.githubusercontent.com/rkapl123/DBAddin/master/docs/image/DBSheetInAction.PNG)
+
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js" type="text/javascript">
