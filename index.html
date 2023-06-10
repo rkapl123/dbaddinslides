@@ -31,14 +31,17 @@ Notes ..
 
 # DB functions
 
-There are three ways to query data with DBAddin:
+There are four ways to query data with DBAddin:
 
 1.  A list-oriented way using `DBListFetch`:  
-    Here the values are entered into a rectangular list starting from the TargetRange cell (similar to MS-Query, actually the `QueryTables` Object is used to fill the data into the Worksheet).
+    Here the results are entered into a QueryTable starting from the TargetRange cell.
 2.  A record-oriented way using `DBRowFetch`:  
-    Here the values are entered into several ranges given in the Parameter list `TargetArray`. Each of these ranges is filled in order of appearance with the results of the query.
+    The results of the query are entered into several ranges given in the Parameter list `TargetArray` in order of the ranges' appearance.
 3.  Setting the Query of a ListObject (new since Excel 2007) or a PivotTable to a defined query using `DBSetQuery`:  
     This requires an existing object (e.g. a ListObject created from a DB query/connection or a pivot table) and sets the target's queryobject to the desired one.
+4.  Setting the Query of a Powerquery Object to a defined query using `DBSetQuery`:  
+    This requires an existing Powerquery name and sets its query to the one defined in `DBSetQuery`.
+
 
 ???
 
@@ -94,6 +97,19 @@ Notes ..
 
 ![:scale 500px](https://raw.githubusercontent.com/rkapl123/DBAddin/master/docs/image/DBSheetInAction.PNG)
 
+---
+
+# Settings/Tools and Ribbon Menu
+
+The DB-Addin settings are stored on a distributed basis, being central and user specific and can be defined within the Ribbon Menu.
+
+The various database relevant settings for DB Functions and DB Modifiers are environment dependent and can be chosen with an environment selector in DB-Addin's ribbon menu.
+There are several tools, like adding query configurations with a configurable tree menu, an ad-hoc SQL-Query window and a error purging/problem detection button.
+Also a logging window and a conversion tool for functions of the legacy VB6 predecessor of DB-Addin is there.
+
+???
+
+Notes ..
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js" type="text/javascript">
